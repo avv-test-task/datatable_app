@@ -19,4 +19,4 @@
 
 **Установка**
 - запустите сервер с поддержкой php. Пример конфигурации дан в `docker/nginx.conf'`
-- импортируйте базу данных в sqlite (напр. sqlite3 `backend/database/database.db" < "database/init.sql`)
+- импортируйте init.sql данных в sqlite файл `backend/database/database.db` (напр. sqlite3 `backend/database/database.db` < `database/init.sql`)
