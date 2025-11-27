@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="main-container" ng-controller="MainController as vm">
+    <main class="main-container" ng-controller="MainController as vm">
         <h1>Switch data between tables</h1>
         <h2>Select a row and click an arrow to move data between the tables</h2>
         <div class="tables-container" ng-class="{'loading-disabled': vm.isLoading}">
             <div class="table-wrapper">
-                <button ng-click="vm.moveSelected('a')" ng-disabled="!vm.hasSelection('a') || vm.isLoading" class="move-button right-move-button">
+                <button ng-click="vm.moveSelected('a')" ng-disabled="!vm.hasSelection('a') || vm.isLoading" class="move-button right-move-button" aria-label="Move selected items to right table">
                     →
                 </button>
-                <table datatable="ng" dt-options="vm.dtOptionsA" dt-instance="vm.dtInstanceA" class="display">
+                <table datatable="ng" dt-options="vm.dtOptionsA" dt-instance="vm.dtInstanceA" class="display" aria-label="Table A: Items in position A">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th aria-label="Select row"></th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Value</th>
@@ -27,7 +27,7 @@
                     <tbody>
                         <tr ng-repeat="item in vm.itemsA">
                             <td>
-                                <input type="checkbox" ng-model="vm.selectedItemsA[item.id]" ng-disabled="vm.isLoading">
+                                <input type="checkbox" ng-model="vm.selectedItemsA[item.id]" ng-disabled="vm.isLoading" aria-label="Select item {{ item.id }}: {{ item.name }}">
                             </td>
                             <td>{{ item.id }}</td>
                             <td>{{ item.name }}</td>
@@ -37,13 +37,13 @@
                 </table>
             </div>
             <div class="table-wrapper">
-                <button ng-click="vm.moveSelected('b')" ng-disabled="!vm.hasSelection('b') || vm.isLoading" class="move-button">
+                <button ng-click="vm.moveSelected('b')" ng-disabled="!vm.hasSelection('b') || vm.isLoading" class="move-button" aria-label="Move selected items to left table">
                     ←
                 </button>
-                <table datatable="ng" dt-options="vm.dtOptionsB" dt-instance="vm.dtInstanceB" class="display">
+                <table datatable="ng" dt-options="vm.dtOptionsB" dt-instance="vm.dtInstanceB" class="display" aria-label="Table B: Items in position B">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th aria-label="Select row"></th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Value</th>
@@ -52,7 +52,7 @@
                     <tbody>
                         <tr ng-repeat="item in vm.itemsB">
                             <td>
-                                <input type="checkbox" ng-model="vm.selectedItemsB[item.id]" ng-disabled="vm.isLoading">
+                                <input type="checkbox" ng-model="vm.selectedItemsB[item.id]" ng-disabled="vm.isLoading" aria-label="Select item {{ item.id }}: {{ item.name }}">
                             </td>
                             <td>{{ item.id }}</td>
                             <td>{{ item.name }}</td>
@@ -62,9 +62,8 @@
                 </table>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="js/bundle.js"></script>
 </body>
 </html>
-
