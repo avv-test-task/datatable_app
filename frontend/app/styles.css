@@ -30,16 +30,6 @@
     min-height: 0;
 }
 
-.table-wrapper .dataTables_wrapper .dataTables_scroll {
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-}
-
-.table-wrapper .dataTables_wrapper .dataTables_scrollBody {
-    max-height: none !important;
-}
-
 .table-wrapper .dataTables_wrapper .table-footer {
     margin-top: auto;
     padding: 10px 0;
@@ -56,12 +46,11 @@
     text-align: center;
 }
 
-.loading-disabled {
-    pointer-events: none;
-    opacity: 0.6;
-}
-
 .dataTables_wrapper .dataTables_info {
     margin-left: 0;
 }
 
+.loading-disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
