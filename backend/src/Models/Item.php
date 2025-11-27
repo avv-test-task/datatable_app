@@ -24,7 +24,7 @@ class Item
              WHERE position = :position 
              ORDER BY id');
         $stmt->execute(['position' => $position]);
-        
+
         return $stmt->fetchAll();
     }
 

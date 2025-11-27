@@ -18,13 +18,13 @@ class Router
         $this->routes[] = [
             'method' => $method,
             'path' => $path,
-            'handler' => $handler
+            'handler' => $handler,
         ];
     }
 
     public function handleRequest(): void
     {
-        $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+        $method = $this->getRequestMethod();
         $path = $this->getRequestPath();
 
         if (!in_array($method, self::ALLOWED_METHODS, true)) {
@@ -48,14 +48,38 @@ class Router
         $this->sendErrorResponse('Not found', 404);
     }
 
+    private function getRequestMethod(): string
+    {
+        if (!isset($_SERVER['REQUEST_METHOD'])) {
+            return 'GET';
+        }
+
+        $method = strtoupper(trim($_SERVER['REQUEST_METHOD']));
+        if (!preg_match('/^[A-Z]+$/', $method)) {
+            return 'GET';
+        }
+
+        return $method;
+    }
+
     private function getRequestPath(): string
     {
-        $path = $_SERVER['REQUEST_URI'] ?? '/';
-        $queryPos = strpos($path, '?');
-        if ($queryPos !== false) {
-            $path = substr($path, 0, $queryPos);
+        if (!isset($_SERVER['REQUEST_URI'])) {
+            return '/';
         }
-        return $path;
+
+        $uri = $_SERVER['REQUEST_URI'];
+        $parsed = parse_url($uri, PHP_URL_PATH);
+        if ($parsed === false || $parsed === null) {
+            return '/';
+        }
+
+        $path = $parsed;
+        if (strpos($path, '/api') === 0) {
+            $path = substr($path, 4);
+        }
+
+        return $path ?: '/';
     }
 
     private function matchPath(string $routePath, string $requestPath): bool
@@ -67,7 +91,8 @@ class Router
     {
         http_response_code($statusCode);
         header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'error' => $message]);
+        $json = json_encode(['success' => false, 'error' => $message], JSON_THROW_ON_ERROR);
+        echo $json;
     }
 }
 
