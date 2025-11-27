@@ -1,14 +1,12 @@
-var angular = require('angular');
-var jQuery = require('jquery');
+'use strict';
 
-window.jQuery = jQuery;
-window.$ = jQuery;
+const angular = require('angular');
+
+require('./bootstrap');
 
 angular.module('datatableApp', [
     'datatables'
 ]);
 
-require('./app.config');
 require('./services/data.service');
 require('./controllers/main.controller');
-
