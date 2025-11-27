@@ -7,17 +7,16 @@ angular
 .module('datatableApp')
 .controller('MainController', MainController);
 
-MainController.$inject = ['DataService', 'DTOptionsBuilder', '$q', '$timeout', '$scope'];
+MainController.$inject = ['DataService', 'DTOptionsBuilder', '$q', '$scope'];
 
 /**
 * @function MainController
 * @param {Object} DataService
 * @param {Object} DTOptionsBuilder
 * @param {Object} $q
-* @param {Object} $timeout
 * @param {Object} $scope
 */
-function MainController(DataService, DTOptionsBuilder, $q, $timeout, $scope) {
+function MainController(DataService, DTOptionsBuilder, $q, $scope) {
     const vm = this;
     
     vm.itemsA = [];
@@ -232,42 +231,39 @@ function MainController(DataService, DTOptionsBuilder, $q, $timeout, $scope) {
             item.selected = isSelected;
         });
         
-        $timeout(function onTimeout() {
-            const dtInstance = getDtInstance(position);
-            let tableElement = null;
+        const dtInstance = getDtInstance(position);
+        let tableElement = null;
+        
+        if (dtInstance && dtInstance.DataTable) {
+            const table = dtInstance.DataTable;
+            tableElement = jQuery(table.table().node());
+        } else {
+            const tableIndex = getTableIndex(position);
+            tableElement = jQuery('table.display').eq(tableIndex);
+        }
+        
+        if (tableElement.length === 0) {
+            return;
+        }
+        
+        const checkboxes = tableElement.find('tbody input[type="checkbox"]');
+        
+        checkboxes.each(function onCheckboxUpdate() {
+            const checkbox = jQuery(this);
+            const row = checkbox.closest('tr');
+            const itemId = parseInt(row.attr('data-item-id'), 10);
             
-            if (dtInstance && dtInstance.DataTable) {
-                const table = dtInstance.DataTable;
-                tableElement = jQuery(table.table().node());
-            } else {
-                const tableIndex = getTableIndex(position);
-                tableElement = jQuery('table.display').eq(tableIndex);
-            }
-            
-            if (tableElement.length === 0) {
-                return;
-            }
-            
-            const checkboxes = tableElement.find('tbody input[type="checkbox"]');
-            
-            checkboxes.each(function onCheckboxUpdate() {
-                const checkbox = jQuery(this);
-                const row = checkbox.closest('tr');
-                const itemId = parseInt(row.attr('data-item-id'), 10);
-                
-                const item = items.find(function onItemFind(i) {
-                    return i.id === itemId;
-                });
-                
-                if (item) {
-                    checkbox.prop('checked', isSelected);
-                    item.selected = isSelected;
-                }
-                
+            const item = items.find(function onItemFind(i) {
+                return i.id === itemId;
             });
             
-            $scope.$apply();
-        }, 100);
+            if (item) {
+                checkbox.prop('checked', isSelected);
+                item.selected = isSelected;
+            }
+        });
+        
+        $scope.$apply();
     }
     
     /**
