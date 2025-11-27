@@ -12,8 +12,7 @@ header('Content-Type: application/json');
 
 $dbPath = __DIR__ . '/../database/database.db';
 $database = new Database($dbPath);
-$db = $database->getConnection();
-$itemModel = new Item($db);
+$itemModel = new Item($database->getConnection());
 $router = new Router();
 
 function sendJsonResponse(array $data, int $statusCode = 200): void
