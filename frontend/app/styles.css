@@ -1,0 +1,67 @@
+@import '../node_modules/water.css/out/light.css';
+@import '../node_modules/datatables.net-dt/css/jquery.dataTables.min.css';
+@import '../node_modules/angularjs-datatables/dist/css/angular-datatables.min.css';
+
+.move-button {
+    align-self: flex-start;
+}
+
+.right-move-button {
+    align-self: flex-end;
+}
+
+.tables-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.table-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+}
+
+.table-wrapper .dataTables_wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.table-wrapper .dataTables_wrapper .dataTables_scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.table-wrapper .dataTables_wrapper .dataTables_scrollBody {
+    max-height: none !important;
+}
+
+.table-wrapper .dataTables_wrapper .table-footer {
+    margin-top: auto;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+}
+
+.table-footer > div {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.table-footer .dataTables_paginate {
+    text-align: center;
+}
+
+.loading-disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.dataTables_wrapper .dataTables_info {
+    margin-left: 0;
+}
+

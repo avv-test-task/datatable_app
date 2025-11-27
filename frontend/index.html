@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="datatableApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch data between tables</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="main-container" ng-controller="MainController as vm">
+        <h1>Switch data between tables</h1>
+        <h2>Select a row and click an arrow to move data between the tables</h2>
+        <div class="tables-container" ng-class="{'loading-disabled': vm.isLoading}">
+            <div class="table-wrapper">
+                <button ng-click="vm.moveSelected('a')" ng-disabled="!vm.hasSelection('a') || vm.isLoading" class="move-button right-move-button">
+                    →
+                </button>
+                <table datatable="ng" dt-options="vm.dtOptionsA" dt-instance="vm.dtInstanceA" class="display">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.itemsA">
+                            <td>
+                                <input type="checkbox" ng-model="vm.selectedItemsA[item.id]" ng-disabled="vm.isLoading">
+                            </td>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.value }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-wrapper">
+                <button ng-click="vm.moveSelected('b')" ng-disabled="!vm.hasSelection('b') || vm.isLoading" class="move-button">
+                    ←
+                </button>
+                <table datatable="ng" dt-options="vm.dtOptionsB" dt-instance="vm.dtInstanceB" class="display">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.itemsB">
+                            <td>
+                                <input type="checkbox" ng-model="vm.selectedItemsB[item.id]" ng-disabled="vm.isLoading">
+                            </td>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.value }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bundle.js"></script>
+</body>
+</html>
+
