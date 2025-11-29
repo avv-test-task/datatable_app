@@ -6,9 +6,12 @@ RUN apt-get update && apt-get install -y \
     libsqlite3-dev \
     libzip-dev \
     curl \
+    git \
+    unzip \
     && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs \
     && docker-php-ext-install pdo pdo_sqlite zip \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
