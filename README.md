@@ -1,4 +1,4 @@
-**Общие замечания**
+## Общие замечания
 
 При разработке я исходил из того, что мы:
 - создаем минималистическое приложение;
@@ -19,16 +19,18 @@
 Код отформатирован: php по `PSR-12`, JS по `John Papa Style Guide for Angular`.
 
 
-**Локальная установка**
+## Локальная установка
 
-```
+Требуется: `git`, `docker` и `docker-compose`.
+
+```bash
 git clone https://github.com/avv-test-task/datatable_app 
 cd datatable_app 
 docker-compose up --build
 ```
 После завершения билда приложение будет доступно по адресу  http://localhost:4200/
 
-- Если вы видите в браузере connection reset, подождите пару минут, скорее всего не заночился `composer install` и `npm install`.
+- Если вы видите в браузере connection reset, подождите пару минут, скорее всего не заночился `composer install` или `npm install`.
 
 - Если порт 4200 на вашей машине занят, можно заменить его на другой  в `docker-compose.yml`:
 
