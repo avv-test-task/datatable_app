@@ -57,7 +57,6 @@ function DataService($http) {
      * @returns {Promise}
      */
     function onGetItemsError(error) {
-        console.error('Error fetching items:', error);
         return Promise.reject(error);
     }
 
@@ -76,7 +75,6 @@ function DataService($http) {
      * @returns {Promise}
      */
     function onSwitchItemError(error) {
-        console.error('Error switching item:', error);
         return Promise.reject(error);
     }
 }
