@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Base Styles - Third-party imports
+   ========================================================================== */
+@import '../node_modules/water.css/out/light.css';
+@import '../node_modules/datatables.net-dt/css/jquery.dataTables.min.css';
+@import '../node_modules/angularjs-datatables/dist/css/angular-datatables.min.css';
+
+/* ==========================================================================
+   Layout - Main container and table layout
+   ========================================================================== */
+.tables-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.table-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+}
+
+/* ==========================================================================
+   Components - Buttons
+   ========================================================================== */
+.move-button {
+    align-self: flex-start;
+}
+
+.right-move-button {
+    align-self: flex-end;
+}
+
+/* ==========================================================================
+   Components - DataTables wrapper
+   ========================================================================== */
+.table-wrapper .dataTables_wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.table-wrapper .dataTables_wrapper .table-footer {
+    margin-top: auto;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+}
+
+.table-footer > div {
+    width: 100%;
+    text-align: center;
+}
+
+.table-footer .dataTables_paginate {
+    text-align: center;
+}
+
+.dataTables_wrapper .dataTables_info {
+    margin-left: 0;
+}
+
+/* ==========================================================================
+   Utilities - Loading state
+   ========================================================================== */
+.loading-disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}

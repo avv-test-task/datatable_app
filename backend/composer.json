@@ -1,0 +1,14 @@
+{
+    "name": "datatable_app/backend",
+    "description": "Backend API for datatable manipulation",
+    "type": "project",
+    "require": {
+        "php": ">=8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
+
